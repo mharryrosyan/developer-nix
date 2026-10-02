@@ -39,6 +39,7 @@ developer-nix/
 ├── flake.nix                       # Entry point Nix Flakes (multi-platform outputs & formatter)
 ├── .gitlab-ci.yml                  # CI pipeline untuk GitLab
 ├── .github/workflows/ci.yml        # CI pipeline untuk GitHub
+├── AGENTS.md                       # Blueprint & aturan kerja untuk AI Agent
 ├── README.md                       # Panduan lengkap onboarding & daily workflow
 ├── hosts/
 │   ├── linux.nix                   # Host profile untuk Linux & Windows WSL2
