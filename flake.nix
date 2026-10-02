@@ -27,6 +27,7 @@
       commonModules = [
         ./modules/common
         ./modules/security
+        ./modules/skills
         ./modules/ai-assistants
         ./modules/autonomous-agents
         ./modules/mcp
@@ -67,5 +68,10 @@
           ./hosts/darwin.nix
         ];
       };
+
+      # Automated Formatter for 'nix fmt'
+      formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.alejandra;
+      formatter.${darwinArmSystem} = nixpkgs.legacyPackages.${darwinArmSystem}.alejandra;
+      formatter.${darwinIntelSystem} = nixpkgs.legacyPackages.${darwinIntelSystem}.alejandra;
     };
 }

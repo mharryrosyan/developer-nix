@@ -15,8 +15,13 @@
     curl
     wget
 
-    # Nix helpers
+    # Security & Secret Scanning
+    gitleaks
+    trufflehog
+
+    # Nix helpers & code formatters
     nh
     nix-output-monitor
+    alejandra
   ];
 }

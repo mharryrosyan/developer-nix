@@ -1,6 +1,29 @@
 { config, pkgs, ... }:
 
 {
+  # Zsh full configuration with plugins
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    enableCompletion = true;
+    autocd = true;
+
+    history = {
+      size = 50000;
+      save = 50000;
+      share = true;
+      ignoreDups = true;
+      ignoreSpace = true;
+    };
+  };
+
+  # Direnv + Nix-Direnv for project-level isolated environments
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   # Starship prompt configuration
   programs.starship = {
     enable = true;

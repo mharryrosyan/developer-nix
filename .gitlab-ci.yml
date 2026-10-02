@@ -1,0 +1,26 @@
+stages:
+  - lint
+  - test
+
+variables:
+  NIX_CONFIG: "experimental-features = nix-command flakes"
+
+# 1. Format & Lint Check
+nix-fmt:
+  stage: lint
+  image: nixos/nix:latest
+  script:
+    - nix fmt -- --check .
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+# 2. Flake Validation
+nix-check:
+  stage: test
+  image: nixos/nix:latest
+  script:
+    - nix flake check --show-trace
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
