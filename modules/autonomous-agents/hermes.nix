@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   hermesConfig = builtins.toJSON {
     version = "1.0";
     reasoning = {

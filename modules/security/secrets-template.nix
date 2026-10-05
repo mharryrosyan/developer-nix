@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   exampleContent = ''
     # ==============================================================================
     # COMPANY DEVELOPER CREDENTIALS TEMPLATE

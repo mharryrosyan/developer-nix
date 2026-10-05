@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   opencodeConfig = builtins.toJSON {
     version = "1.0";
     editor = {

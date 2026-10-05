@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Symlink standardized company skills into Antigravity
   home.file.".gemini/config/skills/code-reviewer".source = ./catalog/code-reviewer;
   home.file.".gemini/config/skills/security-auditor".source = ./catalog/security-auditor;

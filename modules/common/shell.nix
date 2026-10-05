@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Zsh full configuration with plugins
   programs.zsh = {
     enable = true;

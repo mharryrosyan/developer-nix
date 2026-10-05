@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   preCommitHook = ''
     #!/usr/bin/env sh
     # Automated Secret & Credential Leakage Scanner

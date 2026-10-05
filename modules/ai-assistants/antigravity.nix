@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   # Safe default config for Antigravity
   antigravityConfig = builtins.toJSON {
     version = "1.0";

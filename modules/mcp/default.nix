@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   # Standard team MCP configuration
   # NOTE: indexqums is excluded per policy (personal local MCP)
   teamMcpServers = {

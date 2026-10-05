@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   openclawConfig = builtins.toJSON {
     version = "1.0";
     agent = {

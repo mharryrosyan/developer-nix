@@ -16,62 +16,73 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
-    let
-      # Supported architecture systems
-      linuxSystem = "x86_64-linux";
-      darwinArmSystem = "aarch64-darwin";
-      darwinIntelSystem = "x86_64-darwin";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-darwin,
+    ...
+  } @ inputs: let
+    # Supported architecture systems
+    linuxSystem = "x86_64-linux";
+    darwinArmSystem = "aarch64-darwin";
+    darwinIntelSystem = "x86_64-darwin";
 
-      # Shared modules for all developer workstations
-      commonModules = [
-        ./modules/common
-        ./modules/security
-        ./modules/skills
-        ./modules/ai-assistants
-        ./modules/autonomous-agents
-        ./modules/mcp
-      ];
-    in {
-      # 1. Linux & Windows WSL2 Workstations
-      homeConfigurations."developer-linux" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = linuxSystem;
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit inputs; };
-        modules = commonModules ++ [
+    # Shared modules for all developer workstations
+    commonModules = [
+      ./modules/common
+      ./modules/security
+      ./modules/skills
+      ./modules/ai-assistants
+      ./modules/autonomous-agents
+      ./modules/mcp
+    ];
+  in {
+    # 1. Linux & Windows WSL2 Workstations
+    homeConfigurations."developer-linux" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = linuxSystem;
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = {inherit inputs;};
+      modules =
+        commonModules
+        ++ [
           ./hosts/linux.nix
         ];
-      };
-
-      # 2. Apple Silicon macOS (M1/M2/M3/M4) Workstations
-      homeConfigurations."developer-darwin-arm" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = darwinArmSystem;
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit inputs; };
-        modules = commonModules ++ [
-          ./hosts/darwin.nix
-        ];
-      };
-
-      # 3. Intel Mac Workstations
-      homeConfigurations."developer-darwin-x86" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = darwinIntelSystem;
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit inputs; };
-        modules = commonModules ++ [
-          ./hosts/darwin.nix
-        ];
-      };
-
-      # Automated Formatter for 'nix fmt'
-      formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.alejandra;
-      formatter.${darwinArmSystem} = nixpkgs.legacyPackages.${darwinArmSystem}.alejandra;
-      formatter.${darwinIntelSystem} = nixpkgs.legacyPackages.${darwinIntelSystem}.alejandra;
     };
+
+    # 2. Apple Silicon macOS (M1/M2/M3/M4) Workstations
+    homeConfigurations."developer-darwin-arm" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = darwinArmSystem;
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = {inherit inputs;};
+      modules =
+        commonModules
+        ++ [
+          ./hosts/darwin.nix
+        ];
+    };
+
+    # 3. Intel Mac Workstations
+    homeConfigurations."developer-darwin-x86" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = darwinIntelSystem;
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = {inherit inputs;};
+      modules =
+        commonModules
+        ++ [
+          ./hosts/darwin.nix
+        ];
+    };
+
+    # Automated Formatter for 'nix fmt'
+    formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.alejandra;
+    formatter.${darwinArmSystem} = nixpkgs.legacyPackages.${darwinArmSystem}.alejandra;
+    formatter.${darwinIntelSystem} = nixpkgs.legacyPackages.${darwinIntelSystem}.alejandra;
+  };
 }
