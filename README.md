@@ -1,6 +1,6 @@
 # Standardized Developer Platform & AI Guardrails (`developer-nix`)
 
-Repository konfigurasi terpusat untuk seluruh tim developer menggunakan **Nix Flakes** dan **Home Manager**. Mendukung **Linux**, **macOS (Apple Silicon & Intel)**, dan **Windows 10/11 (via WSL2)**.
+Repository konfigurasi terpusat untuk seluruh tim developer menggunakan **Nix Flakes** dan **Home Manager**. Mendukung **Linux**, **macOS (Apple Silicon)**, dan **Windows 10/11 (via WSL2)**.
 
 ---
 
@@ -88,7 +88,7 @@ cd ~/.config/developer-nix
 ./scripts/install-nix.sh
 ```
 
-*(Script akan otomatis mendeteksi apakah laptop menggunakan Linux, macOS Apple Silicon, macOS Intel, atau Windows WSL2).*
+*(Script akan otomatis mendeteksi apakah laptop menggunakan Linux, macOS Apple Silicon, atau Windows WSL2).*
 
 ### 2. Mengisi Kredensial Pribadi (Satu Kali Saja)
 Nix otomatis membuat file rahasia lokal di `~/.config/company-ai/secrets.env` dengan permission `600` (hanya bisa dibaca oleh user bersangkutan). 

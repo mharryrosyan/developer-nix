@@ -17,7 +17,8 @@ case "$OS" in
     if [ "$ARCH" = "arm64" ]; then
       FLAKE_TARGET="developer-darwin-arm"
     else
-      FLAKE_TARGET="developer-darwin-x86"
+      echo "Error: Intel Mac (x86_64-darwin) is no longer supported by modern Nixpkgs."
+      exit 1
     fi
     ;;
   *)

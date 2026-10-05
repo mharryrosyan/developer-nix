@@ -26,7 +26,6 @@
     # Supported architecture systems
     linuxSystem = "x86_64-linux";
     darwinArmSystem = "aarch64-darwin";
-    darwinIntelSystem = "x86_64-darwin";
 
     # Shared modules for all developer workstations
     commonModules = [
@@ -66,23 +65,8 @@
         ];
     };
 
-    # 3. Intel Mac Workstations
-    homeConfigurations."developer-darwin-x86" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        system = darwinIntelSystem;
-        config.allowUnfree = true;
-      };
-      extraSpecialArgs = {inherit inputs;};
-      modules =
-        commonModules
-        ++ [
-          ./hosts/darwin.nix
-        ];
-    };
-
     # Automated Formatter for 'nix fmt'
     formatter.${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.alejandra;
     formatter.${darwinArmSystem} = nixpkgs.legacyPackages.${darwinArmSystem}.alejandra;
-    formatter.${darwinIntelSystem} = nixpkgs.legacyPackages.${darwinIntelSystem}.alejandra;
   };
 }

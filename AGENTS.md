@@ -27,7 +27,7 @@ developer-nix/
 ├── .github/workflows/ci.yml        # CI pipeline for GitHub (flake check & lint)
 ├── hosts/
 │   ├── linux.nix                   # Host profile for Linux and Windows WSL2
-│   └── darwin.nix                  # Host profile for macOS (Apple Silicon & Intel)
+│   └── darwin.nix                  # Host profile for macOS (Apple Silicon)
 ├── modules/
 │   ├── ai-assistants/              # 1. Interactive Coding Assistants
 │   │   ├── antigravity.nix         # Antigravity CLI configs, permissions, directory bootstrap
